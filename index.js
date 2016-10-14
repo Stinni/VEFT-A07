@@ -15,6 +15,14 @@ class User {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.punches = [];
+	}
+}
+
+class Punch {
+	constructor(cId) {
+		this.cId;
+		this.
 	}
 }
 
@@ -38,16 +46,20 @@ app.post("/api/companies", (req, res) => {
 		return res.send("Error. Post syntax incorrect!");
 	}
 
+	//var name = // TODO: finish this <- check if valid string and then valid int for punchCount
+
 	var newCompany = new Company(companies.length, req.body.name, req.body.punchCount);
 	companies.push(newCompany);
-	res.json(true);
+
+	res.statusCode = 200;
+	res.json(newCompany);
 });
 
 app.get("/api/companies/:id", (req, res) => {
 	var id = parseInt(req.params.id);
-	if(id >= companies.length || id < 0) {
+	if(isNaN(id) || id >= companies.length || id < 0) {
 		res.statusCode = 404;
-		return res.send("Error. " + id + " is not a valid company id!");
+		return res.send("Error. " + req.params.id + " is not a valid company id!");
 	}
 	res.json(companies[id]);
 });
@@ -59,8 +71,11 @@ app.get("/api/users", (req, res) => {
 /*
 (20%) /api/users/ - POST
 Adds a new user to the system. The following properties must be specified: name, email
+
 (20%) /api/users/{id}/punches - GET
-Returns a list of all punches registered for the given user. Each punch contains information about what company it was added to, and when it was created. It should be possible to filter the list by adding a "?company={id}" to the query.
+Returns a list of all punches registered for the given user. Each punch contains information about what company it was added to, and when it was created.
+It should be possible to filter the list by adding a "?company={id}" to the query.
+
 (20%) /api/users/{id}/punches - POST
 Adds a new punch to the user account. The only information needed is the id of the company.
 */
