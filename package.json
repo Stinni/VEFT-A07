@@ -8,8 +8,10 @@
   },
   "author": "kristinnf13",
   "license": "MIT",
+  "repository": "https://github.com/Stinni/VEFT-A07",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0"
   },
-  "devdependencies": {}
+  "devDependencies": {}
 }

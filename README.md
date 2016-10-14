@@ -2,21 +2,30 @@
 
 ---
 
-# About the PunchcardAPI project
+## About the PunchcardAPI project
 
-
----
-
-# Getting started
-
-If you want to execute this app, you should run the following commands:
-
-bower install
-(add more later)
+(Some text here!)
 
 ---
 
-# Author
+## Getting started
 
-Kristinn Heiðar Freysteinsson
-kristinnf13@ru.is
+If you want to execute this api app, you should run the following commands:
+
+* npm install
+* node index.js
+
+And then use a browser or some other tool to use the api
+
+---
+
+## Available Routes
+
+[http://localhost:5000/api/companies](http://localhost:5000/api/companies)
+
+---
+
+## Author
+
+##### Kristinn Heiðar Freysteinsson
+##### <kristinnf13@ru.is>
