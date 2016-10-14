@@ -41,10 +41,19 @@ const users = [ new User(0, "Kristinn", "kristinnf13@ru.is"), new User(1, "Daní
 users[0].punches.push(new Punch(0));
 users[1].punches.push(new Punch(1));
 
+/*
+(10%) /api/companies - GET
+Returns a list of all registered companies
+*/
 app.get("/api/companies", (req, res) => {
 	res.json(companies);
 });
 
+/*
+(10%) /api/companies - POST
+Adds a new company. The required properties are "name" and "punchCount", indicating how many punches
+a user needs to collect in order to get a discount.
+*/
 app.post("/api/companies", (req, res) => {
 	if(!req.body.hasOwnProperty("name") || !req.body.hasOwnProperty("punchCount")) {
 		res.statusCode = 400;
@@ -72,6 +81,10 @@ app.post("/api/companies", (req, res) => {
 	res.json(newCompany);
 });
 
+/*
+(10%) /api/companies/{id} - GET
+Returns a given company by id.
+*/
 app.get("/api/companies/:id", (req, res) => {
 	var id = parseInt(req.params.id);
 	if(isNaN(id) || id >= companies.length || id < 0) {
@@ -81,10 +94,18 @@ app.get("/api/companies/:id", (req, res) => {
 	res.json(companies[id]);
 });
 
+/*
+(10%) /api/users/ - GET
+Returns a list of all users
+*/
 app.get("/api/users", (req, res) => {
 	res.json(users);
 });
 
+/*
+(20%) /api/users/ - POST
+Adds a new user to the system. The following properties must be specified: name, email
+*/
 app.post("/api/users", (req, res) => {
 	if(!req.body.hasOwnProperty("name") || !req.body.hasOwnProperty("email")) {
 		res.statusCode = 400;
@@ -110,8 +131,10 @@ app.post("/api/users", (req, res) => {
 	res.json(newUser);
 });
 
-// This method is not a part of the project. I added this to check if punches/punchtimes were correct
-// before I started working on the rest of the methods.
+/*
+This method is not a part of the project. I added this to check if punches/punchtimes were correct
+before I started working on the rest of the methods.
+*/
 app.get("/api/users/:id", (req, res) => {
 	var id = parseInt(req.params.id);
 	if(isNaN(id) || id >= users.length || id < 0) {
@@ -121,6 +144,12 @@ app.get("/api/users/:id", (req, res) => {
 	res.json(users[id]);
 });
 
+/*
+(20%) /api/users/{id}/punches - GET
+Returns a list of all punches registered for the given user. Each punch contains information about what
+company it was added to, and when it was created. It should be possible to filter the list by adding a
+"?company={id}" to the query.
+*/
 app.get("/api/users/:id/punches", (req, res) => {
 	var pId = parseInt(req.params.id);
 	if(isNaN(pId) || pId >= users.length || pId < 0) {
